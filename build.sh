@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -e
+set -ex
 
 package_name="symly"
 version="$1"
@@ -30,7 +30,6 @@ mkdir -p "build/${package_name}"
 cd "build/${package_name}" || exit 1
 
 echo "Downloading upstream tarball from ${upstream_tarball_url}"
-upstream_tarball_url="https://github.com/loicrouchon/symly/archive/refs/heads/features/debian-source-package.tar.gz" # TODO remove
 curl -sL "${upstream_tarball_url}" -o "${upstream_tarball}"
 
 echo "Unpacking upstream tarball ${upstream_tarball}"
@@ -38,7 +37,6 @@ tar xzf "${upstream_tarball}"
 
 echo "Repacking upstream tarball ${upstream_tarball} (get rid off root level directory)"
 rm -f "${upstream_tarball}"
-mv symly* "${package_version_dir}" # re-normalize containing dir name
 tar czf "${upstream_tarball}" "${package_version_dir}"
 
 echo "Add debian dir"

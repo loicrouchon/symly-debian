@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -e
+set -ex
 
 apt-get update
 apt install -y gpg curl build-essential devscripts debhelper openjdk-17-jdk-headless ant libpicocli-java
