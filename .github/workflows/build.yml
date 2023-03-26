@@ -19,5 +19,5 @@ jobs:
           PPA_GPG_PRIVATE_KEY: ${{secrets.PPA_GPG_PRIVATE_KEY}}
         run: |
           VERSION=$(echo "${{ github.ref }}" | sed -E 's#^refs/tags/v([0-9\.]+)(-.*)?#\1#')
-          ./setup-build-env.sh
+          sudo ./setup-build-env.sh
           ./build.sh "${VERSION}"
