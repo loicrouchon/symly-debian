@@ -15,16 +15,6 @@ if ! (cat debian/changelog | grep -E "^${package_name} " | head -n 1 | grep -q "
   exit 1
 fi
 
-echo "Configure environment:"
-echo "Configure environment: maintainer name and email"
-export DEBEMAIL="loic@loicrouchon.com"
-export DEBFULLNAME="Loic Rouchon"
-echo "Configure environment: GPG fingerprint"
-GPG_KEY_FINGERPRINT="C3BB9448B16C971103E876BF3A091A0DF2799262"
-
-echo "Configure environment: PPA URL"
-PPA_URL="ppa:loicrouchon/symly"
-
 rm -rf "build"
 mkdir -p "build/${package_name}"
 cd "build/${package_name}" || exit 1

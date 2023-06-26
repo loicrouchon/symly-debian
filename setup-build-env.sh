@@ -1,6 +1,24 @@
 #!/usr/bin/env sh
 set -ex
 
-apt-get update
-apt install -y gpg curl build-essential devscripts debhelper openjdk-17-jdk-headless ant libpicocli-java
-echo "${PPA_GPG_PRIVATE_KEY}" | gpg --import --batch
+image="ubuntu:latest"
+podman run -ti \
+    -v "$(pwd)":/workspace \
+    -w /workspace \
+    "$image" \
+    bash -c """
+./configure.sh
+
+echo 'Configure environment: maintainer name and email'
+export DEBEMAIL='loic@loicrouchon.com'
+export DEBFULLNAME='Loic Rouchon'
+echo 'Configure environment: GPG fingerprint'
+export GPG_KEY_FINGERPRINT='C3BB9448B16C971103E876BF3A091A0DF2799262'
+echo 'Configure environment: PPA URL'
+export PPA_URL='ppa:loicrouchon/symly'
+
+cat gpg/*.key  | gpg --import
+
+bash
+"""
+
