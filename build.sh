@@ -35,6 +35,7 @@ cp -R "${cur_dir}/debian" "debian"
 
 echo "Build source package"
 dpkg-buildpackage --sign-key="${GPG_KEY_FINGERPRINT}" --build=source
+# dpkg-buildpackage --sign-key="${GPG_KEY_FINGERPRINT}" --build=binary
 
 cd ..
 ls -l

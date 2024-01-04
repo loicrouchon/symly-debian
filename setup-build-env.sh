@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -ex
 
-image="ubuntu:latest"
+image="ubuntu:23.10"
 podman run -ti \
     -v "$(pwd)":/workspace \
     -w /workspace \
